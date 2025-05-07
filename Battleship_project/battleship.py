@@ -116,9 +116,13 @@ class BattleshipGUI:
         hit = self.game.fire_torpedo(shooter, coord_str)
 
         msg = self.game.get_last_message()
-      
-        if msg == "Not your turn.":
-            return 
+        if msg:
+            msg = msg.replace("First", "Player 1").replace("Second", "Player 2")
+            messagebox.showinfo("Battleship", msg)
+
+        if msg == "Not your turn." or msg == "Game already finished.":
+            return  
+
         btn = self.player_buttons[target].get((x, y))
         if btn:
             if hit:
