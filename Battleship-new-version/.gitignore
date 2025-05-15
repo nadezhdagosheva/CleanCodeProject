@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+*$py.class
+Get-ChildItem -Recurse -Directory -Filter "__pycache__" | ForEach-Object {
+    git rm -r --cached $_.FullName
+}
